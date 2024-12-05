@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Login Form | CodingNepal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+  <!-- AlertifyJS CSS and JS links -->
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+</head>
+<body>
+  <div class="wrapper">
+    <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      <h2>Register</h2>
+      <div class="input-field">
+        <input type="text" name="first_name" id="first_name" required autocomplete="">
+        <label for="first_name">First Name</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="last_name" id="last_name" required autocomplete="">
+        <label for="last_name">Last Name</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="username" id="username" required autocomplete="">
+        <label for="username">Username</label>
+      </div>
+
+      <div class="input-field">
+        <input type="email" name="email" id="email" required autocomplete="">
+        <label for="email">Email</label>
+      </div>
+
+      <div class="input-field">
+        <input type="password" name="password" required autocomplete="new-password">
+        <label>Password</label>
+      </div>
+
+      <div class="input-field">
+        <input type="password" name="password1" required autocomplete="new-password">
+        <label>Confirm Password</label>
+      </div>
+
+      <button type="submit">Register</button>
+      <div class="register">
+        <p>Already Registered? <a style="color: lightblue;" href="{% url 'login' %}">Sign In</a></p>
+      </div>
+   
+    </form>
+
+  </div>
+
+  {% for message in messages %}
+  <!-- Alertify component notified position -->
+  <script>
+    alertify.set('notifier','position', 'top-right');
+    alertify.success('{{ message }}');
+  </script>
+  {% endfor %}
+</body>
+</html>
